@@ -13,6 +13,8 @@ export default function Hero() {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (mq.matches) return;
     const t = setInterval(() => setCurrent((p) => (p + 1) % headers.length), 5000);
     return () => clearInterval(t);
   }, []);
@@ -40,7 +42,7 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-start justify-end h-full px-4 sm:px-6 pb-32 sm:pb-24 lg:px-20 lg:pb-32 max-w-[96rem] mx-auto w-full">
-        <div id="main-content" className="max-w-3xl animate-fade-up">
+        <div id="main-content" tabIndex={-1} className="max-w-3xl animate-fade-up focus:outline-none">
           <p className="text-gold text-xs sm:text-sm lg:text-base tracking-[.25em] uppercase mb-4 sm:mb-6 font-medium">
             Vecinos por Montellano
           </p>

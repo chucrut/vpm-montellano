@@ -70,7 +70,7 @@
   }
 
   /* ── Touch target helpers ── */
-  * {
+  a, button {
     -webkit-tap-highlight-color: transparent;
   }
 

@@ -56,6 +56,10 @@ export default function TeEscuchamos() {
     const validationErrors = validate(form);
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
+      const firstError = (["name", "email", "message"] as Field[]).find(f => validationErrors[f]);
+      if (firstError) {
+        document.getElementById(firstError)?.focus();
+      }
       return;
     }
 
@@ -75,10 +79,7 @@ export default function TeEscuchamos() {
         setStatus("error");
       }
     } catch {
-      /* Graceful fallback for demo */
-      setStatus("sent");
-      setForm({ name: "", email: "", message: "" });
-      setTouched({});
+      setStatus("error");
     }
   }
 

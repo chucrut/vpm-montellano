@@ -151,7 +151,7 @@ export default function Navbar() {
       >
         <nav className="mx-auto flex items-center justify-between max-w-[96rem] px-4 sm:px-6 py-3 sm:py-5 lg:px-12" aria-label="Navegación principal">
           {/* ── Social icons (desktop left) ── */}
-          <div className="hidden lg:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-0.5">
             {socials.map(({ href, label, Icon }) => (
               <a
                 key={label}
@@ -159,7 +159,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="p-3 text-white/80 hover:text-gold transition-colors duration-300"
+                className="p-4 text-white/80 hover:text-gold transition-colors duration-300 min-w-[48px] min-h-[48px] flex items-center justify-center"
               >
                 <Icon />
               </a>
@@ -218,8 +218,9 @@ export default function Navbar() {
         role="dialog"
         aria-modal="true"
         aria-label="Menú de navegación"
+        aria-hidden={!open}
         className={`fixed top-0 right-0 z-50 h-full w-[min(85vw,400px)] bg-navy shadow-2xl transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col ${
-          open ? "translate-x-0" : "translate-x-full"
+          open ? "translate-x-0" : "translate-x-full pointer-events-none"
         }`}
       >
         {/* Close button inside panel */}
@@ -286,7 +287,7 @@ export default function Navbar() {
                   : "text-white/40 hover:text-white/70"
               }`}
               aria-label={label}
-              aria-current={activeSection === section ? "page" : undefined}
+              aria-current={activeSection === section ? "location" : undefined}
             >
               <Icon />
               <span className="text-[10px] font-medium tracking-wide">{label}</span>
