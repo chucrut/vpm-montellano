@@ -29,25 +29,24 @@ const noticias = [
 
 export default function QueEstaPasando() {
   return (
-    <section id="que-esta-pasando" className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-20 bg-cream">
-      <div className="max-w-[96rem] mx-auto">
-        <div className="reveal mb-12 lg:mb-20">
-          <span className="text-gold-dark text-xs tracking-[.25em] uppercase font-semibold mb-4 sm:mb-6 block">
+    <section id="que-esta-pasando" className="py-20 sm:py-28 lg:py-40 px-5 sm:px-8 lg:px-12 bg-offwhite">
+      <div className="max-w-[90rem] mx-auto">
+        <div className="reveal mb-14 lg:mb-20">
+          <span className="text-label text-gold mb-5 sm:mb-7 block">
             Qué Está Pasando
           </span>
-          <h2 className="font-bold text-navy leading-[1.15] tracking-tight text-balance">
+          <h2 className="font-heading font-medium text-text leading-[1.12]">
             Noticias y eventos
           </h2>
         </div>
 
-        {/* Grid: 1 col mobile, 2 tablet, 3 desktop */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {noticias.map((n) => (
             <article
               key={n.title}
-              className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 reveal"
+              className="group bg-white overflow-hidden shadow-sm hover:shadow-lg transition-all duration-500 reveal"
             >
-              <div className="relative h-48 sm:h-52 overflow-hidden">
+              <div className="relative h-48 sm:h-56 overflow-hidden">
                 <Image
                   src="/assets/spot_4.png"
                   alt={n.title}
@@ -56,22 +55,22 @@ export default function QueEstaPasando() {
                   loading="lazy"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
-                <span className="absolute top-4 left-4 text-[10px] tracking-[.15em] uppercase font-bold bg-gold text-navy-deep px-3 py-1.5 rounded-full">
+                <span className="absolute top-4 left-4 text-[11px] tracking-[0.15em] uppercase font-semibold bg-gold text-primary px-3 py-1.5">
                   {n.tag}
                 </span>
               </div>
-              <div className="p-5 sm:p-6 lg:p-7">
-                <div className="flex flex-wrap items-center gap-x-3 sm:gap-x-4 gap-y-1 text-[11px] tracking-wide uppercase text-gray-400 mb-3 font-medium">
+              <div className="p-6 sm:p-7">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] tracking-wider uppercase text-muted mb-4 font-medium">
                   <span>{n.date}</span>
                   <span aria-hidden="true">·</span>
                   <span>{n.location}</span>
                   <span aria-hidden="true">·</span>
                   <span>{n.time}</span>
                 </div>
-                <h3 className="text-base sm:text-lg font-bold text-navy mb-2 group-hover:text-gold-dark transition-colors duration-300">
+                <h3 className="text-base sm:text-lg font-heading font-semibold text-text mb-2 group-hover:text-gold transition-colors duration-300">
                   {n.title}
                 </h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{n.excerpt}</p>
+                <p className="text-text-light text-sm leading-relaxed">{n.excerpt}</p>
               </div>
             </article>
           ))}

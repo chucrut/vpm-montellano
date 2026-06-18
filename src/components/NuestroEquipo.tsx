@@ -11,27 +11,25 @@ const team = [
 
 export default function NuestroEquipo() {
   return (
-    <section id="nuestro-equipo" className="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-20 bg-cream">
-      <div className="max-w-[96rem] mx-auto">
-        {/* Header */}
-        <div className="max-w-2xl reveal mb-12 lg:mb-20">
-          <span className="text-gold-dark text-xs tracking-[.25em] uppercase font-semibold mb-4 sm:mb-6 block">
+    <section id="nuestro-equipo" className="py-20 sm:py-28 lg:py-40 px-5 sm:px-8 lg:px-12 bg-offwhite">
+      <div className="max-w-[90rem] mx-auto">
+        <div className="max-w-2xl reveal mb-14 lg:mb-20">
+          <span className="text-label text-gold mb-5 sm:mb-7 block">
             Nuestro Equipo
           </span>
-          <h2 className="font-bold text-navy leading-[1.15] tracking-tight text-balance">
+          <h2 className="font-heading font-medium text-text leading-[1.12]">
             Las personas detrás del proyecto
           </h2>
-          <p className="mt-4 sm:mt-5 text-gray-500 leading-relaxed max-w-xl">
+          <p className="mt-5 text-text-light leading-relaxed max-w-xl">
             Un equipo diverso, preparado y con ganas de trabajar. Vecinos como tú, con ilusión y compromiso.
           </p>
         </div>
 
-        {/* Grid: 1 col mobile, 2 tablet, 3 desktop */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {team.map((m) => (
             <article
               key={m.name}
-              className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 reveal"
+              className="group bg-white overflow-hidden shadow-sm hover:shadow-lg transition-all duration-500 reveal"
             >
               <div className="relative h-64 sm:h-72 overflow-hidden">
                 <Image
@@ -42,14 +40,14 @@ export default function NuestroEquipo() {
                   loading="lazy"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent" />
-                <span className="absolute bottom-4 left-4 text-xs font-semibold bg-gold text-navy-deep px-3 py-1.5 rounded-full tracking-wide">
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent" />
+                <span className="absolute bottom-4 left-4 text-xs font-semibold bg-gold text-primary px-3 py-1.5 tracking-wider">
                   {m.role}
                 </span>
               </div>
-              <div className="p-5 sm:p-6 lg:p-7">
-                <h3 className="text-lg sm:text-xl font-bold text-navy">{m.name}</h3>
-                <p className="mt-2 text-gray-500 text-sm leading-relaxed">{m.bio}</p>
+              <div className="p-6 sm:p-7">
+                <h3 className="text-lg sm:text-xl font-heading font-semibold text-text">{m.name}</h3>
+                <p className="mt-2 text-text-light text-sm leading-relaxed">{m.bio}</p>
               </div>
             </article>
           ))}
