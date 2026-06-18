@@ -1,8 +1,5 @@
 @import "tailwindcss";
 
-/* Google Fonts - loaded via link for performance; this is a fallback @import */
-/* Playfair Display for headings, Inter for body */
-
 /* ── VPM Editorial Design Tokens ── */
 @theme inline {
   --color-primary: #1a3a2a;
@@ -19,9 +16,13 @@
   --color-accent: #5a7a5a;
   --color-muted: #959090;
   --color-white: #ffffff;
-  --font-heading: "Playfair Display", Georgia, serif;
-  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-heading: var(--font-playfair, "Playfair Display", Georgia, serif);
+  --font-body: var(--font-inter, "Inter", system-ui, -apple-system, sans-serif);
 }
+
+/* ── Short screen custom variants ── */
+@custom-variant short-screen @media (max-height: 720px);
+@custom-variant very-short @media (max-height: 700px);
 
 /* ── Base ── */
 @layer base {
@@ -150,11 +151,11 @@
 }
 
 .animate-fade-up {
-  animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .animate-fade-in {
-  animation: fadeIn 1.2s ease forwards;
+  animation: fadeIn 0.6s ease forwards;
 }
 
 .animate-slow-zoom {
@@ -174,8 +175,8 @@
 .reveal-ready .reveal {
   opacity: 0;
   transform: translateY(40px);
-  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal-ready .reveal.visible {

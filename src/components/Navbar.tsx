@@ -12,6 +12,7 @@ const InstagramIcon = () => (
 const TikTokIcon = () => (
   <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
 );
+
 const socials = [
   { href: "https://www.facebook.com/vecinospormontellano/", label: "Facebook", Icon: FacebookIcon },
   { href: "https://www.instagram.com/vecinospormontellano/", label: "Instagram", Icon: InstagramIcon },
@@ -34,6 +35,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const hamburgerRef = useRef<HTMLButtonElement>(null);
+  const focusableElementsRef = useRef<HTMLElement[]>([]);
 
   const onScroll = useCallback(() => {
     setScrolled(window.scrollY > 40);
@@ -44,6 +46,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [onScroll]);
 
+  // Close on Escape
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape" && open) {
@@ -55,11 +58,13 @@ export default function Navbar() {
     return () => document.removeEventListener("keydown", handleKey);
   }, [open]);
 
+  // Prevent body scroll when menu open
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
+  // Focus first link when menu opens
   useEffect(() => {
     if (open) {
       const timer = setTimeout(() => {
@@ -70,6 +75,7 @@ export default function Navbar() {
     }
   }, [open]);
 
+  // Close on desktop resize
   useEffect(() => {
     const closeOnDesktop = () => {
       if (window.innerWidth >= 1024) setOpen(false);
@@ -77,6 +83,47 @@ export default function Navbar() {
     window.addEventListener("resize", closeOnDesktop);
     return () => window.removeEventListener("resize", closeOnDesktop);
   }, []);
+
+  // Focus trap inside menu modal
+  useEffect(() => {
+    if (!open || !menuRef.current) return;
+
+    const menu = menuRef.current;
+    const getFocusables = () => {
+      return Array.from(
+        menu.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+      );
+    };
+
+    focusableElementsRef.current = getFocusables();
+
+    const trapFocus = (e: KeyboardEvent) => {
+      if (e.key !== "Tab") return;
+
+      const focusables = getFocusables();
+      if (focusables.length === 0) return;
+
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    document.addEventListener("keydown", trapFocus);
+    return () => document.removeEventListener("keydown", trapFocus);
+  }, [open]);
 
   return (
     <>
@@ -105,7 +152,43 @@ export default function Navbar() {
             </span>
           </a>
 
-          <div className="absolute right-5 z-50 flex items-center sm:right-8 lg:right-12">
+          {/* Desktop nav links - visible lg+ */}
+          <div className="hidden lg:flex items-center gap-6">
+            {links.map(({ label, href }) => (
+              <a
+                key={href}
+                href={href}
+                className="text-white/75 hover:text-gold text-sm tracking-wide transition-colors duration-300"
+              >
+                {label}
+              </a>
+            ))}
+          </div>
+
+          {/* Desktop socials + CTA */}
+          <div className="hidden lg:flex items-center gap-3">
+            {socials.map(({ href, label, Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="p-2 text-white/55 hover:text-gold transition-colors duration-300"
+              >
+                <Icon />
+              </a>
+            ))}
+            <a
+              href="#te-escuchamos"
+              className="ml-2 inline-flex items-center gap-2 px-5 py-2.5 bg-gold text-primary text-sm font-semibold hover:bg-gold-light transition-colors duration-300"
+            >
+              Envía tu propuesta
+            </a>
+          </div>
+
+          {/* Mobile/tablet hamburger — visible < lg */}
+          <div className="lg:hidden absolute right-5 z-50 flex items-center sm:right-8">
             <button
               ref={hamburgerRef}
               onClick={() => setOpen(!open)}
@@ -176,6 +259,15 @@ export default function Navbar() {
               {label}
             </a>
           ))}
+          <a
+            href="#te-escuchamos"
+            onClick={() => setOpen(false)}
+            tabIndex={open ? 0 : -1}
+            className="mt-6 inline-flex items-center gap-2 bg-gold text-primary px-6 py-3.5 text-base font-semibold transition-colors duration-300 self-start"
+            style={{ transitionDelay: open ? `${links.length * 50}ms` : "0ms", opacity: open ? 1 : 0 }}
+          >
+            Envía tu propuesta
+          </a>
         </nav>
 
         <div className="flex items-center gap-2 px-8 py-6 border-t border-white/[0.08]">

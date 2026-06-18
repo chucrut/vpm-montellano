@@ -21,12 +21,12 @@ export default function Unete() {
                 Ayuda en eventos, reparte información, participa en las asambleas.
               </p>
               <a
-                href="https://www.instagram.com/vecinospormontellano/"
+                href="https://wa.me/34600000000?text=Hola%2C%20quiero%20ser%20voluntario%20de%20Vecinos%20por%20Montellano.%20%C2%BFC%C3%B3mo%20puedo%20ayudar%3F"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-gold text-primary px-7 py-3.5 text-sm font-semibold hover:bg-gold-light transition-colors duration-300 min-h-[48px]"
               >
-                Quiero participar ↗
+                Quiero ser voluntario ↗
               </a>
             </div>
 
@@ -37,7 +37,7 @@ export default function Unete() {
                 Comparte nuestras redes, habla con tus vecinos. Cada gesto suma.
               </p>
               <a
-                href="https://www.facebook.com/vecinospormontellano/"
+                href="https://wa.me/34600000000?text=Hola%2C%20quiero%20colaborar%20con%20Vecinos%20por%20Montellano.%20Me%20gustar%C3%ADa%20saber%20m%C3%A1s."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 border-2 border-gold text-gold px-7 py-3.5 text-sm font-semibold hover:bg-gold hover:text-primary transition-all duration-300 min-h-[48px]"

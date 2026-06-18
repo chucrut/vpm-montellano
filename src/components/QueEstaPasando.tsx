@@ -63,12 +63,12 @@ export default function QueEstaPasando() {
                   className="object-contain transition-transform duration-700 group-hover:scale-[1.02]"
                   style={{ objectPosition: n.position }}
                 />
-                <span className="absolute left-4 top-4 bg-primary px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-white">
+                <span className="absolute left-4 top-4 bg-primary px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white">
                   {n.platform}
                 </span>
               </div>
               <div className="flex flex-1 flex-col p-6 sm:p-7">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-gold">{n.meta}</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-gold">{n.meta}</p>
                 <h3 className="mt-3 text-xl font-heading font-semibold text-text group-hover:text-primary transition-colors duration-300">
                   {n.title}
                 </h3>

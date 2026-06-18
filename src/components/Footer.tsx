@@ -38,18 +38,18 @@ export default function Footer() {
               <Image src="/assets/logo-mark-transparent.png" alt="" width={44} height={44} className="brightness-0 invert" />
               <span className="text-lg font-heading font-semibold tracking-wide">Vecinos Por Montellano</span>
             </div>
-            <p className="text-white/30 text-sm leading-relaxed max-w-sm">
+            <p className="text-white/55 text-sm leading-relaxed max-w-sm">
               Vecinos por Montellano. Un proyecto independiente, transparente y participativo para construir el pueblo que merecemos.
             </p>
           </div>
 
           {/* Nav */}
           <nav className="lg:col-span-3" aria-label="Navegación del pie">
-            <h4 className="text-xs tracking-[0.2em] uppercase text-white/25 font-semibold mb-5">Navegación</h4>
+            <h4 className="text-xs tracking-[0.2em] uppercase text-white/40 font-semibold mb-5">Navegación</h4>
             <ul className="space-y-3">
               {links.map(({ label, href }) => (
                 <li key={href}>
-                  <a href={href} className="text-white/40 hover:text-gold text-sm transition-colors duration-300 py-1.5 inline-block">
+                  <a href={href} className="text-white/65 hover:text-white/90 text-sm transition-colors duration-300 py-1.5 inline-block">
                     {label}
                   </a>
                 </li>
@@ -59,7 +59,7 @@ export default function Footer() {
 
           {/* Social */}
           <div className="lg:col-span-2">
-            <h4 className="text-xs tracking-[0.2em] uppercase text-white/25 font-semibold mb-5">Síguenos</h4>
+            <h4 className="text-xs tracking-[0.2em] uppercase text-white/40 font-semibold mb-5">Síguenos</h4>
             <div className="flex gap-1">
               {socials.map(({ href, label, Icon }) => (
                 <a
@@ -68,7 +68,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="p-3 text-white/30 hover:text-gold transition-colors duration-300 min-w-[48px] min-h-[48px] flex items-center justify-center"
+                  className="p-3 text-white/55 hover:text-gold transition-colors duration-300 min-w-[48px] min-h-[48px] flex items-center justify-center"
                 >
                   <Icon />
                 </a>
@@ -78,15 +78,15 @@ export default function Footer() {
 
           {/* Contact */}
           <div className="lg:col-span-3">
-            <h4 className="text-xs tracking-[0.2em] uppercase text-white/25 font-semibold mb-5">Contacto</h4>
-            <ul className="space-y-3 text-white/30 text-sm">
+            <h4 className="text-xs tracking-[0.2em] uppercase text-white/40 font-semibold mb-5">Contacto</h4>
+            <ul className="space-y-3 text-white/55 text-sm">
               <li>Escríbenos a través de nuestras redes sociales.</li>
               <li>Montellano, Sevilla</li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-14 sm:mt-16 pt-8 border-t border-white/[0.06] text-center text-white/15 text-xs tracking-wider">
+        <div className="mt-14 sm:mt-16 pt-8 border-t border-white/[0.06] text-center text-white/25 text-xs tracking-wider">
           &copy; {new Date().getFullYear()} Vecinos por Montellano
         </div>
       </div>

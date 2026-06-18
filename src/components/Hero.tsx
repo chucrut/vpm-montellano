@@ -53,7 +53,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-primary/25 via-transparent to-primary/60" />
       <div className="absolute inset-0 bg-gradient-to-t from-primary/50 via-transparent to-transparent" />
 
-      <div className="pointer-events-none absolute left-1/2 top-20 z-[5] h-52 w-52 -translate-x-1/2 opacity-[0.16] sm:top-24 sm:h-64 sm:w-64 lg:hidden" aria-hidden="true">
+      <div className="pointer-events-none absolute left-1/2 top-20 z-[5] h-52 w-52 -translate-x-1/2 opacity-[0.16] sm:top-24 sm:h-64 sm:w-64 short-screen:hidden lg:hidden" aria-hidden="true">
         <Image
           src="/assets/logo-transparent.png"
           alt=""
@@ -64,7 +64,7 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-start justify-end h-full px-5 sm:px-8 pb-28 sm:pb-20 lg:px-12 lg:pb-32 max-w-[90rem] mx-auto w-full">
+      <div className="relative z-10 flex flex-col items-start justify-end h-full px-5 sm:px-8 pb-20 sm:pb-20 lg:px-12 lg:pb-32 max-w-[90rem] mx-auto w-full">
         <div className="w-full max-w-4xl min-w-0 animate-fade-up">
           <p className="text-gold text-xs sm:text-sm tracking-[0.28em] uppercase mb-5 sm:mb-7 font-semibold font-body">
             Vecinos por Montellano
@@ -79,24 +79,24 @@ export default function Hero() {
           </p>
           <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row flex-wrap gap-4">
             <a
-              href="#quienes-somos"
+              href="#te-escuchamos"
               className="inline-flex items-center justify-center gap-2 px-10 py-4 bg-gold text-primary font-semibold hover:bg-gold-light transition-colors duration-300 text-sm tracking-wider min-h-[48px]"
             >
-              Conócenos
+              Envía tu propuesta
             </a>
             <a
-              href="#unete"
+              href="#nuestra-propuesta"
               className="inline-flex items-center justify-center gap-2 px-10 py-4 border border-white/30 text-white font-medium hover:bg-white/10 transition-all duration-300 text-sm tracking-wider min-h-[48px]"
             >
-              Únete al cambio
+              Ver nuestras propuestas
             </a>
           </div>
         </div>
 
         <a
-          href="#quienes-somos"
-          aria-label="Bajar a Quiénes somos"
-          className="absolute bottom-5 left-1/2 z-20 flex h-12 w-12 -translate-x-1/2 items-center justify-center rounded-full text-white/55 transition-colors hover:text-gold sm:bottom-7"
+          href="#nuestra-propuesta"
+          aria-label="Bajar a Nuestra Propuesta"
+          className="absolute bottom-5 left-1/2 z-20 flex h-12 w-12 -translate-x-1/2 items-center justify-center rounded-full text-white/55 transition-colors hover:text-gold sm:bottom-7 very-short:hidden"
         >
           <svg className="h-7 w-7 animate-float" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
