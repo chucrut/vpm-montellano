@@ -6,8 +6,12 @@ export default function CookieBanner() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem("vpm-cookie-consent");
-    if (!stored) setVisible(true);
+    // Read localStorage in effect to avoid SSR mismatch
+    const stored = typeof window !== "undefined" ? localStorage.getItem("vpm-cookie-consent") : null;
+    if (!stored) {
+      // Use requestAnimationFrame to defer the state update
+      requestAnimationFrame(() => setVisible(true));
+    }
   }, []);
 
   const accept = (choice: "all" | "essential") => {

@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import ShareButtons from "@/components/ShareButtons";
 import va from "@vercel/analytics";
 
 interface NoticiaItem {

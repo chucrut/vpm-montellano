@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ShareButtons from "@/components/ShareButtons";
@@ -139,7 +140,7 @@ export default function EquipoPage() {
             </div>
 
             <div className="reveal mt-12 text-center sm:text-left">
-              <a
+              <Link
                 href="/"
                 className="inline-flex items-center gap-2 text-sm font-semibold text-primary dark:text-gold hover:opacity-80 transition-opacity"
               >
@@ -147,7 +148,7 @@ export default function EquipoPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
                 </svg>
                 Volver al inicio
-              </a>
+              </Link>
             </div>
           </div>
         </section>

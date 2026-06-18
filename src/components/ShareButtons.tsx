@@ -14,7 +14,11 @@ export default function ShareButtons({ title, url, className = "" }: ShareButton
   const shareUrl = url ?? (typeof window !== "undefined" ? window.location.href : "");
 
   useEffect(() => {
-    setShareSupported(typeof navigator !== "undefined" && !!navigator.share);
+    const supported = typeof navigator !== "undefined" && !!navigator.share;
+    if (supported) {
+      const id = window.requestAnimationFrame(() => setShareSupported(true));
+      return () => window.cancelAnimationFrame(id);
+    }
   }, []);
 
   const encodedUrl = encodeURIComponent(shareUrl);
