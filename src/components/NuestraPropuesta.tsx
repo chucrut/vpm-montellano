@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 const propuestas = [
   { title: "Bienestar Social", desc: "Refuerzo de servicios sociales, ayuda a domicilio y programas para mayores y dependientes.", icon: "🤝" },
   { title: "Educación y Juventud", desc: "Más inversión en colegios, actividades extraescolares gratuitas y oportunidades para jóvenes.", icon: "📚" },
@@ -22,18 +20,6 @@ export default function NuestraPropuesta() {
           <h2 className="font-heading font-medium text-text leading-[1.12]">
             Lo que queremos para Montellano
           </h2>
-        </div>
-
-        {/* Featured image */}
-        <div className="reveal mb-14 lg:mb-20 overflow-hidden">
-          <Image
-            src="/assets/spot_3.png"
-            alt="VPM Propuesta — Visión de futuro para Montellano"
-            width={1400}
-            height={500}
-            className="w-full max-h-[300px] sm:max-h-[400px] object-cover"
-            loading="lazy"
-          />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">

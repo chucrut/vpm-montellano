@@ -1,12 +1,22 @@
 import Image from "next/image";
 
 const team = [
-  { name: "Candidato/a 1", role: "Cabeza de lista", bio: "Vecino de Montellano desde siempre. Comprometido con el desarrollo local." },
-  { name: "Candidato/a 2", role: "Número 2", bio: "Profesional con experiencia en gestión pública y servicios sociales." },
-  { name: "Candidato/a 3", role: "Número 3", bio: "Joven emprendedor. Apasionado por la innovación al servicio del pueblo." },
-  { name: "Candidato/a 4", role: "Número 4", bio: "Comerciante local. Conoce las necesidades reales de nuestros negocios." },
-  { name: "Candidato/a 5", role: "Número 5", bio: "Educadora y madre. Lucha por una educación pública de calidad." },
-  { name: "Candidato/a 6", role: "Número 6", bio: "Jubilado activo. Defensor de nuestros mayores y tradiciones." },
+  {
+    name: "José Ignacio Ceballos Vera",
+    role: "Portavoz del grupo municipal",
+    bio: "Concejal de Vecinos por Montellano. Trabaja en las áreas de comercio, innovación y desarrollo empresarial.",
+    image: "/assets/team/jose-ignacio-ceballos.jpg",
+    position: "76% center",
+    source: "https://www.instagram.com/p/CpLU2rksH-o/",
+  },
+  {
+    name: "José Antonio Martínez Illanes",
+    role: "Concejal de Medio Ambiente",
+    bio: "Impulsa iniciativas vinculadas al entorno natural, los caminos rurales y el cuidado de la Sierra de San Pablo.",
+    image: "/assets/team/jose-antonio-martinez.jpg",
+    position: "center",
+    source: "https://www.facebook.com/vecinospormontellano/posts/679907021694820/",
+  },
 ];
 
 export default function NuestroEquipo() {
@@ -21,33 +31,41 @@ export default function NuestroEquipo() {
             Las personas detrás del proyecto
           </h2>
           <p className="mt-5 text-text-light leading-relaxed max-w-xl">
-            Un equipo diverso, preparado y con ganas de trabajar. Vecinos como tú, con ilusión y compromiso.
+            Los representantes de Vecinos por Montellano en la corporación municipal 2023–2027.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid max-w-5xl grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8">
           {team.map((m) => (
             <article
               key={m.name}
-              className="group bg-white overflow-hidden shadow-sm hover:shadow-lg transition-all duration-500 reveal"
+              className="group bg-white overflow-hidden border border-offwhite-dark hover:border-gold/50 transition-all duration-500 reveal"
             >
-              <div className="relative h-64 sm:h-72 overflow-hidden">
+              <div className="relative aspect-square overflow-hidden bg-primary">
                 <Image
-                  src="/assets/spot_2.png"
-                  alt={`Foto de ${m.name}, ${m.role} de VPM Montellano`}
+                  src={m.image}
+                  alt={`Retrato de ${m.name}`}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  sizes="(max-width: 640px) 100vw, 50vw"
+                  className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
+                  style={{ objectPosition: m.position }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent" />
-                <span className="absolute bottom-4 left-4 text-xs font-semibold bg-gold text-primary px-3 py-1.5 tracking-wider">
-                  {m.role}
-                </span>
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/55 via-transparent to-transparent" />
               </div>
               <div className="p-6 sm:p-7">
+                <span className="mb-3 inline-block text-[11px] font-semibold uppercase tracking-[0.16em] text-gold">
+                  {m.role}
+                </span>
                 <h3 className="text-lg sm:text-xl font-heading font-semibold text-text">{m.name}</h3>
                 <p className="mt-2 text-text-light text-sm leading-relaxed">{m.bio}</p>
+                <a
+                  href={m.source}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-primary transition-colors hover:text-gold"
+                >
+                  Ver publicación <span aria-hidden="true">↗</span>
+                </a>
               </div>
             </article>
           ))}

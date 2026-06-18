@@ -1,18 +1,19 @@
 import type { Metadata, Viewport } from "next";
+import ScrollReveal from "@/components/ScrollReveal";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "VPM — Vecinos por Montellano",
+  title: "Vecinos Por Montellano",
   description:
     "Web oficial de Vecinos por Montellano. Conoce nuestro equipo, propuestas y únete al cambio que Montellano necesita.",
   metadataBase: new URL("https://vpm-montellano.vercel.app"),
   alternates: { canonical: "/" },
   openGraph: {
-    title: "VPM — Vecinos por Montellano",
+    title: "Vecinos Por Montellano",
     description:
       "Conoce nuestro equipo, nuestras propuestas y únete al cambio que Montellano necesita.",
     url: "/",
-    siteName: "VPM Montellano",
+    siteName: "Vecinos Por Montellano",
     locale: "es_ES",
     type: "website",
   },
@@ -42,6 +43,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <ScrollReveal />
         <a href="#main-content" className="skip-link">
           Saltar al contenido
         </a>
