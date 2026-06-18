@@ -33,7 +33,7 @@ const campanas = [
 
 export default function Campanas() {
   return (
-    <section id="campanas" className="bg-primary-dark px-5 py-20 text-white sm:px-8 sm:py-28 lg:px-12 lg:py-36">
+    <section id="campanas" className="bg-primary-dark dark:bg-[#0a1a10] px-5 py-20 text-white sm:px-8 sm:py-28 lg:px-12 lg:py-36">
       <div className="mx-auto max-w-[90rem]">
         <div className="reveal mb-12 grid gap-6 lg:mb-16 lg:grid-cols-2 lg:items-end">
           <div className="min-w-0">

@@ -1,4 +1,8 @@
+"use client";
+
+import { useState, FormEvent } from "react";
 import Image from "next/image";
+import va from "@vercel/analytics";
 
 const FacebookIcon = () => (
   <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
@@ -28,8 +32,40 @@ const socials = [
 ];
 
 export default function Footer() {
+  const [nlEmail, setNlEmail] = useState("");
+  const [nlStatus, setNlStatus] = useState<"idle" | "subscribing" | "subscribed" | "error">("idle");
+  const [nlMsg, setNlMsg] = useState("");
+
+  const handleNewsletter = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!nlEmail.trim()) return;
+    setNlStatus("subscribing");
+    setNlMsg("");
+
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: nlEmail }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.error || "Error al suscribirte");
+      }
+
+      setNlStatus("subscribed");
+      setNlMsg("¡Gracias! Te mantendremos informado.");
+      setNlEmail("");
+      va.track("join_click", { type: "newsletter" });
+    } catch (err) {
+      setNlStatus("error");
+      setNlMsg(err instanceof Error ? err.message : "Error al suscribirte");
+    }
+  };
+
   return (
-    <footer className="bg-primary-dark text-white" role="contentinfo">
+    <footer className="bg-primary-dark dark:bg-[#0a1a10] text-white" role="contentinfo">
       <div className="max-w-[90rem] mx-auto px-5 sm:px-8 lg:px-12 py-16 sm:py-20 lg:py-24">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 sm:gap-12">
           {/* Brand */}
@@ -41,6 +77,35 @@ export default function Footer() {
             <p className="text-white/55 text-sm leading-relaxed max-w-sm">
               Vecinos por Montellano. Un proyecto independiente, transparente y participativo para construir el pueblo que merecemos.
             </p>
+
+            {/* Newsletter */}
+            <div className="mt-6">
+              <h4 className="text-xs tracking-[0.2em] uppercase text-white/40 font-semibold mb-3">Recibe nuestras novedades</h4>
+              {nlStatus === "subscribed" ? (
+                <p className="text-gold text-sm font-medium">{nlMsg}</p>
+              ) : (
+                <form onSubmit={handleNewsletter} className="flex gap-2">
+                  <input
+                    type="email"
+                    required
+                    value={nlEmail}
+                    onChange={(e) => setNlEmail(e.target.value)}
+                    placeholder="tu@email.com"
+                    className="flex-1 min-w-0 bg-white/[0.06] border border-white/[0.1] text-white placeholder:text-white/25 px-3 py-2.5 text-sm focus:outline-none focus:border-gold transition-colors"
+                  />
+                  <button
+                    type="submit"
+                    disabled={nlStatus === "subscribing" || !nlEmail.trim()}
+                    className="bg-gold text-primary px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.12em] hover:bg-gold-light transition-colors disabled:opacity-50 disabled:cursor-not-allowed shrink-0"
+                  >
+                    {nlStatus === "subscribing" ? "..." : "Suscribir"}
+                  </button>
+                </form>
+              )}
+              {nlStatus === "error" && (
+                <p className="text-red-400 text-xs mt-1">{nlMsg}</p>
+              )}
+            </div>
           </div>
 
           {/* Nav */}
@@ -68,6 +133,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
+                  onClick={() => va.track("social_outbound", { platform: label.toLowerCase() })}
                   className="p-3 text-white/55 hover:text-gold transition-colors duration-300 min-w-[48px] min-h-[48px] flex items-center justify-center"
                 >
                   <Icon />

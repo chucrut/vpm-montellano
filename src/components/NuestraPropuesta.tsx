@@ -1,3 +1,7 @@
+"use client";
+
+import va from "@vercel/analytics";
+
 const ManosIcon = () => (
   <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
@@ -111,45 +115,68 @@ const propuestas = [
 ];
 
 const badgeStyles: Record<BadgeStatus, string> = {
-  Propuesto: "bg-blue-50 text-blue-700 border-blue-200",
-  "En desarrollo": "bg-amber-50 text-amber-700 border-amber-200",
-  Comprometido: "bg-green-50 text-green-700 border-green-200",
+  Propuesto: "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-800",
+  "En desarrollo": "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-900/20 dark:text-amber-400 dark:border-amber-800",
+  Comprometido: "bg-green-50 text-green-700 border-green-200 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800",
 };
 
 export default function NuestraPropuesta() {
   return (
-    <section id="nuestra-propuesta" className="py-20 sm:py-28 lg:py-40 px-5 sm:px-8 lg:px-12 bg-white">
+    <section id="nuestra-propuesta" className="py-20 sm:py-28 lg:py-40 px-5 sm:px-8 lg:px-12 bg-white dark:bg-[#1a1a1a]">
       <div className="max-w-[90rem] mx-auto">
         <div className="max-w-2xl reveal mb-14 lg:mb-20">
           <span className="text-label text-gold mb-5 sm:mb-7 block">
             Nuestra Propuesta
           </span>
-          <h2 className="font-heading font-medium text-text leading-[1.12]">
+          <h2 className="font-heading font-medium text-text dark:text-[#e5e5e5] leading-[1.12]">
             Lo que queremos para Montellano
           </h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
-          {propuestas.map((p) => (
+          {propuestas.map((p, i) => (
             <div
               key={p.title}
-              className="group reveal border border-offwhite-dark p-6 sm:p-7 hover:border-primary/10 hover:shadow-md hover:-translate-y-1 transition-all duration-300 bg-white flex flex-col"
+              className="group reveal border border-offwhite-dark dark:border-[#333] p-6 sm:p-7 hover:border-primary/10 dark:hover:border-gold/30 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 bg-white dark:bg-[#242424] flex flex-col"
+              style={{ transitionDelay: `${i * 60}ms` }}
             >
-              <div className="text-gold mb-4 transition-colors duration-300 group-hover:text-primary">
+              <div className="text-gold mb-4 transition-colors duration-300 group-hover:text-primary dark:group-hover:text-gold group-hover:-translate-y-0.5 transition-transform duration-300">
                 <p.icon />
               </div>
-              <h3 className="text-lg font-heading font-semibold text-text mb-3 group-hover:text-gold transition-colors duration-300">
+              <h3 className="text-lg font-heading font-semibold text-text dark:text-[#e5e5e5] mb-3 group-hover:text-gold transition-colors duration-300">
                 {p.title}
               </h3>
-              <p className="text-text-light text-sm leading-relaxed mb-4">{p.desc}</p>
-              <p className="text-xs text-text-light leading-relaxed mb-4 mt-auto">
-                <span className="font-semibold text-text">Compromiso:</span> {p.compromiso}
+              <p className="text-text-light dark:text-[#999] text-sm leading-relaxed mb-4">{p.desc}</p>
+              <p className="text-xs text-text-light dark:text-[#999] leading-relaxed mb-4 mt-auto">
+                <span className="font-semibold text-text dark:text-[#e5e5e5]">Compromiso:</span> {p.compromiso}
               </p>
               <span className={`inline-flex self-start text-[11px] font-semibold px-2.5 py-1 border rounded-full ${badgeStyles[p.badge]}`}>
                 {p.badge}
               </span>
             </div>
           ))}
+        </div>
+
+        <div className="reveal mt-10 flex flex-wrap items-center gap-4">
+          <a
+            href="/propuestas"
+            onClick={() => va.track("proposal_submit", { action: "view_all" })}
+            className="inline-flex items-center gap-2 text-sm font-semibold text-primary dark:text-gold hover:opacity-80 transition-opacity"
+          >
+            Ver todas las propuestas
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+          <button
+            onClick={() => window.print()}
+            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-muted dark:text-[#999] hover:text-text dark:hover:text-[#ccc] transition-colors"
+          >
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+            </svg>
+            Imprimir / PDF
+          </button>
         </div>
       </div>
     </section>

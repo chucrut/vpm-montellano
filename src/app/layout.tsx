@@ -1,6 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import ScrollReveal from "@/components/ScrollReveal";
+import CookieBanner from "@/components/CookieBanner";
+import ThemeToggle from "@/components/ThemeToggle";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -51,18 +54,74 @@ export const viewport: Viewport = {
   themeColor: "#1a3a2a",
 };
 
+/*
+ * Vercel Analytics Custom Events:
+ *
+ * proposal_submit  — fired when a user submits a proposal via form
+ * whatsapp_click   — fired when WhatsApp CTA button is clicked
+ * join_click       — fired when volunteer/collaborate join button is clicked
+ * social_outbound  — fired when user clicks any social media link (Facebook, Instagram, TikTok)
+ *
+ * Usage: import va from "@vercel/analytics"; va.track("event_name", { property: "value" });
+ */
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className={`${playfair.variable} ${inter.variable}`}>
+    <html lang="es" className={`${playfair.variable} ${inter.variable}`} suppressHydrationWarning>
       <head>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        {/* Theme init — inline to prevent flash on load */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var stored = localStorage.getItem('vpm-theme');
+                  if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark');
+                  }
+                } catch(e) {}
+              })();
+            `,
+          }}
+        />
+        {/* JSON-LD Schema.org */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Vecinos por Montellano",
+              url: "https://vpm-montellano.vercel.app",
+              logo: "https://vpm-montellano.vercel.app/assets/logo.png",
+              sameAs: [
+                "https://www.facebook.com/vecinospormontellano/",
+                "https://www.instagram.com/vecinospormontellano/",
+                "https://www.tiktok.com/@vecinos.por.monte",
+              ],
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Montellano",
+                addressRegion: "Sevilla",
+                addressCountry: "ES",
+              },
+            }),
+          }}
+        />
       </head>
       <body>
+        <Analytics />
         <ScrollReveal />
+        <ThemeToggle />
+        <CookieBanner />
         <a href="#main-content" className="skip-link">
           Saltar al contenido
         </a>
