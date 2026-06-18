@@ -10,16 +10,18 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <>
       <Navbar />
-      <Hero />
-      <QuienesSomos />
-      <NuestroEquipo />
-      <NuestraPropuesta />
-      <QueEstaPasando />
-      <TeEscuchamos />
-      <Unete />
+      <main className="min-h-screen pb-16 md:pb-0">
+        <Hero />
+        <QuienesSomos />
+        <NuestroEquipo />
+        <NuestraPropuesta />
+        <QueEstaPasando />
+        <TeEscuchamos />
+        <Unete />
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }
