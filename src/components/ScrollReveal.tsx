@@ -1,10 +1,15 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useLayoutEffect } from "react";
 
 export default function ScrollReveal() {
+  const pathname = usePathname();
+
   useLayoutEffect(() => {
     const elements = Array.from(document.querySelectorAll<HTMLElement>(".reveal"));
+
+    elements.forEach((element) => element.classList.remove("visible"));
 
     if (!("IntersectionObserver" in window)) {
       elements.forEach((element) => element.classList.add("visible"));
@@ -35,9 +40,8 @@ export default function ScrollReveal() {
 
     return () => {
       observer.disconnect();
-      document.documentElement.classList.remove("reveal-ready");
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }

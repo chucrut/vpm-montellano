@@ -14,7 +14,7 @@ export default function Footer() {
 
       <div className="footer-grid">
         <Link className="footer-brand" href="/">
-          <Image src="/assets/logo-mark-transparent.png" alt="" width={64} height={60} />
+          <Image src="/assets/logo-mark-transparent.png" alt="" width={70} height={65} />
           <span>VECINOS<br /><small>POR MONTELLANO</small></span>
         </Link>
         <nav aria-label="Navegación del pie">

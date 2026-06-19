@@ -60,13 +60,23 @@ export default function Home() {
           <p className="eyebrow">QUÉ ESTÁ PASANDO</p>
           <p>Una selección de asuntos, publicaciones y conversaciones de VPM.</p>
         </div>
-        <div className="home-projects-grid">
-          {updates.slice(0, 3).map((item, index) => (
-            <a className={`home-project home-project-${index + 1} reveal`} href={item.href} target="_blank" rel="noreferrer" key={item.title}>
-              <div>
-                <Image src={item.image} alt="" fill sizes="(max-width: 700px) 100vw, 38vw" />
+        <div className="home-updates-grid">
+          {updates.slice(0, 3).map((item) => (
+            <a className="home-update-card reveal" href={item.href} target="_blank" rel="noreferrer" key={item.title}>
+              <div className={`home-update-image is-${item.imageFit}`}>
+                <Image
+                  src={item.image}
+                  alt={`Publicación de VPM: ${item.title}`}
+                  fill
+                  sizes="(max-width: 700px) 100vw, 33vw"
+                />
               </div>
-              <span>{item.title}</span>
+              <div className="home-update-copy">
+                <p>{item.category}</p>
+                <h3>{item.title}</h3>
+                <span>{item.excerpt}</span>
+                <i aria-hidden="true">↗</i>
+              </div>
             </a>
           ))}
         </div>

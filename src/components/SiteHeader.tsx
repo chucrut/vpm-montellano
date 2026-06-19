@@ -69,7 +69,7 @@ export default function SiteHeader() {
         <SocialIcons className="header-socials" />
 
         <Link className="header-brand" href="/" aria-label="Vecinos por Montellano — inicio" onClick={() => setOpen(false)}>
-          <Image src="/assets/logo-mark-transparent.png" alt="" width={31} height={29} priority />
+          <Image src="/assets/logo-mark-transparent.png" alt="" width={28} height={26} priority />
           <span>VECINOS</span>
           <small>POR MONTELLANO</small>
         </Link>
@@ -83,10 +83,12 @@ export default function SiteHeader() {
           aria-label={open ? "Cerrar menú" : "Abrir menú"}
           onClick={() => setOpen((value) => !value)}
         >
-          <span>{open ? "CERRAR" : "MENÚ"}</span>
-          <i />
-          <i />
-          <i />
+          <span className="menu-trigger-label">{open ? "CERRAR" : "MENÚ"}</span>
+          <span className="menu-trigger-icon" aria-hidden="true">
+            <i />
+            <i />
+            <i />
+          </span>
         </button>
       </header>
 
