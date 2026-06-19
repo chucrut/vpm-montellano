@@ -22,16 +22,32 @@ export default function HomeHero() {
   return (
     <section className="home-hero">
       {images.map((image, index) => (
-        <Image
+        <div
           key={image.src}
-          src={image.src}
-          alt={index === active ? image.alt : ""}
-          fill
-          priority={index === 0}
-          loading={index === 0 ? "eager" : "lazy"}
-          sizes="100vw"
-          className={`home-hero-image ${index === active ? "is-active" : ""}`}
-        />
+          className={`home-hero-slide ${index === active ? "is-active" : ""}`}
+          aria-hidden={index !== active}
+        >
+          <Image
+            src={image.src}
+            alt=""
+            fill
+            priority={index === 0}
+            loading={index === 0 ? "eager" : "lazy"}
+            fetchPriority={index === 0 ? "high" : "auto"}
+            sizes="100vw"
+            className="hero-image-ambient"
+          />
+          <Image
+            src={image.src}
+            alt={index === active ? image.alt : ""}
+            fill
+            priority={index === 0}
+            loading={index === 0 ? "eager" : "lazy"}
+            fetchPriority={index === 0 ? "high" : "auto"}
+            sizes="100vw"
+            className="hero-image-complete"
+          />
+        </div>
       ))}
       <div className="home-hero-overlay" />
 

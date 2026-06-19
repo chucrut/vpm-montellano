@@ -114,6 +114,7 @@ export type Update = {
   excerpt: string;
   image: string;
   href: string;
+  imageFit: "graphic" | "photo";
   video?: boolean;
 };
 
@@ -125,6 +126,7 @@ export const updates: readonly Update[] = [
       "VPM informó de una inversión de 120.634,72 € para actuaciones en el camino hacia el Brosque, la Vereda de la Maestranza y el camino Cantera–Santa Isabel.",
     image: "/assets/news/caminos-rurales.jpg",
     href: "https://www.facebook.com/vecinospormontellano/posts/930249613327225/",
+    imageFit: "graphic",
   },
   {
     category: "Pleno municipal",
@@ -133,6 +135,7 @@ export const updates: readonly Update[] = [
       "Una actualización sobre la aprobación en Pleno de medidas para la gestión responsable de colonias felinas.",
     image: "/assets/news/colonias-felinas.jpg",
     href: "https://www.facebook.com/vecinospormontellano/posts/723591780659677/",
+    imageFit: "graphic",
   },
   {
     category: "Transparencia",
@@ -141,6 +144,7 @@ export const updates: readonly Update[] = [
       "Intervención pública sobre facturas, contratos y procedimientos reflejados en informes municipales.",
     image: "/assets/news/pleno-municipal.jpg",
     href: "https://www.facebook.com/vecinospormontellano/videos/4329589333950842/",
+    imageFit: "photo",
     video: true,
   },
   {
@@ -150,6 +154,7 @@ export const updates: readonly Update[] = [
       "Una invitación a pensar a largo plazo el Montellano que queremos dejar a las próximas generaciones.",
     image: "/assets/spot_2.png",
     href: "https://www.facebook.com/vecinospormontellano/",
+    imageFit: "graphic",
   },
   {
     category: "Campaña",
@@ -158,6 +163,7 @@ export const updates: readonly Update[] = [
       "Una declaración de origen: escuchar la calle y trabajar desde los asuntos cotidianos de Montellano.",
     image: "/assets/spot_1.png",
     href: "https://www.facebook.com/vecinospormontellano/",
+    imageFit: "graphic",
   },
   {
     category: "Campaña",
@@ -166,6 +172,7 @@ export const updates: readonly Update[] = [
       "Una invitación a convertir la participación y las ideas compartidas en trabajo por el pueblo.",
     image: "/assets/spot_3.png",
     href: "https://www.instagram.com/vecinospormontellano/",
+    imageFit: "graphic",
   },
   {
     category: "Campaña",
@@ -174,6 +181,7 @@ export const updates: readonly Update[] = [
       "Información accesible, decisiones explicadas y rendición de cuentas como base de la confianza.",
     image: "/assets/spot_4.png",
     href: "https://www.facebook.com/vecinospormontellano/",
+    imageFit: "graphic",
   },
   {
     category: "Entorno rural",
@@ -182,5 +190,6 @@ export const updates: readonly Update[] = [
       "Publicación sobre la participación de José Antonio Martínez en una grabación del programa Tierra y Mar.",
     image: "/assets/team/jose-antonio-martinez.jpg",
     href: "https://www.facebook.com/vecinospormontellano/posts/679907021694820/",
+    imageFit: "photo",
   },
 ] as const;

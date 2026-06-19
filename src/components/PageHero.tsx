@@ -17,16 +17,29 @@ export default function PageHero({
 }) {
   return (
     <section className="page-hero">
-      <Image
-        src={image}
-        alt={imageAlt}
-        fill
-        priority
-        loading="eager"
-        sizes="100vw"
-        className="page-hero-image"
-        style={{ objectPosition: imagePosition }}
-      />
+      <div className="page-hero-media">
+        <Image
+          src={image}
+          alt=""
+          fill
+          priority
+          loading="eager"
+          fetchPriority="high"
+          sizes="100vw"
+          className="hero-image-ambient"
+          style={{ objectPosition: imagePosition }}
+        />
+        <Image
+          src={image}
+          alt={imageAlt}
+          fill
+          priority
+          loading="eager"
+          fetchPriority="high"
+          sizes="100vw"
+          className="hero-image-complete"
+        />
+      </div>
       <div className="page-hero-shade" />
       <div className="page-hero-content reveal">
         <p className="eyebrow">{eyebrow}</p>

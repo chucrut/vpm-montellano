@@ -69,7 +69,7 @@ export default function SiteHeader() {
         <SocialIcons className="header-socials" />
 
         <Link className="header-brand" href="/" aria-label="Vecinos por Montellano — inicio" onClick={() => setOpen(false)}>
-          <Image src="/assets/logo-mark-transparent.png" alt="" width={38} height={36} priority />
+          <Image src="/assets/logo-mark-transparent.png" alt="" width={31} height={29} priority />
           <span>VECINOS</span>
           <small>POR MONTELLANO</small>
         </Link>

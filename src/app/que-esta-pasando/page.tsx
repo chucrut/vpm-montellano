@@ -26,8 +26,13 @@ export default function QueEstaPasandoPage() {
       />
 
       <section id="contenido" className="featured-update">
-        <div className="featured-update-image reveal">
-          <Image src={featured.image} alt="" fill sizes="(max-width: 900px) 100vw, 60vw" />
+        <div className={`featured-update-image is-${featured.imageFit} reveal`}>
+          <Image
+            src={featured.image}
+            alt={`Publicación de VPM: ${featured.title}`}
+            fill
+            sizes="(max-width: 900px) 100vw, 58vw"
+          />
         </div>
         <div className="featured-update-copy reveal">
           <p className="eyebrow">{featured.category}</p>
@@ -45,20 +50,22 @@ export default function QueEstaPasandoPage() {
         <div className="news-grid">
           {items.map((item) => (
             <article className="news-item reveal" key={item.title}>
-              <a href={item.href} target="_blank" rel="noreferrer">
-                <div className="news-image">
+              <a className="news-card" href={item.href} target="_blank" rel="noreferrer">
+                <div className={`news-image is-${item.imageFit}`}>
                   <Image
                     src={item.image}
-                    alt=""
+                    alt={`Publicación de VPM: ${item.title}`}
                     fill
-                    sizes="(max-width: 700px) 100vw, 25vw"
-                    className={item.image.includes("/spot_") ? "contain-image" : undefined}
+                    sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw"
                   />
                   {item.video && <span className="video-badge">▶ VÍDEO</span>}
                 </div>
-                <p>{item.category}</p>
-                <h3>{item.title}</h3>
-                <span>{item.excerpt}</span>
+                <div className="news-card-body">
+                  <p>{item.category}</p>
+                  <h3>{item.title}</h3>
+                  <span>{item.excerpt}</span>
+                  <i aria-hidden="true">↗</i>
+                </div>
               </a>
             </article>
           ))}
