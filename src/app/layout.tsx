@@ -2,8 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import ScrollReveal from "@/components/ScrollReveal";
-import CookieBanner from "@/components/CookieBanner";
-import ThemeToggle from "@/components/ThemeToggle";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -22,7 +20,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Vecinos Por Montellano",
+  title: {
+    default: "Vecinos por Montellano",
+    template: "%s — Vecinos por Montellano",
+  },
   description:
     "Web oficial de Vecinos por Montellano. Conoce nuestro equipo, propuestas y únete al cambio que Montellano necesita.",
   metadataBase: new URL("https://vpm-montellano.vercel.app"),
@@ -118,10 +119,8 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <Analytics />
+        {process.env.VERCEL ? <Analytics /> : null}
         <ScrollReveal />
-        <ThemeToggle />
-        <CookieBanner />
         <a href="#main-content" className="skip-link">
           Saltar al contenido
         </a>

@@ -1,38 +1,37 @@
-# VPM — Vecinos por Montellano
+# Vecinos por Montellano
 
-Web política oficial de Vecinos por Montellano.
+Web editorial de VPM construida con Next.js 16, TypeScript y Tailwind CSS 4.
 
-## Stack
+## Rutas principales
 
-- **Next.js 16** (App Router)
-- **Tailwind CSS v4** — diseño custom desde cero
-- **TypeScript**
-- **Vercel** — CI/CD automático con cada push
+- `/`
+- `/quienes-somos`
+- `/nuestra-propuesta`
+- `/nuestro-equipo`
+- `/que-esta-pasando`
+- `/te-escuchamos`
+- `/unete`
 
-## Diseño
-
-Diseño editorial minimalista inspirado en agencias de arquitectura paisajista premium, adaptado al contexto político con paleta navy + gold. Tipografía Inter, animaciones suaves, whitespace generoso.
-
-## Secciones
-
-1. **Inicio** — Hero fullscreen con 3 headers rotativos
-2. **Quiénes Somos** — Presentación + valores
-3. **Nuestro Equipo** — Grid de candidatos
-4. **Nuestra Propuesta** — 8 programas políticos
-5. **Qué Está Pasando** — Noticias y eventos
-6. **Te Escuchamos** — Formulario de contacto
-7. **Únete** — WhatsApp CTAs para voluntariado
+Las antiguas rutas `/actualidad`, `/equipo` y `/propuestas` redirigen a su nueva
+ubicación para no romper enlaces existentes.
 
 ## Desarrollo
 
 ```bash
 npm install
-npm run dev      # http://localhost:3000
-npm run build    # Build producción
+npm run dev
+npm run lint
+npx tsc --noEmit
+npm run build
 ```
 
-## Deploy
+## Contenido pendiente de VPM
 
-Push a `main` → deploy automático en Vercel.
+- URL oficial de YouTube.
+- Número oficial de WhatsApp.
+- Datos legales completos y correo para derechos de privacidad.
+- Backend persistente o servicio de email para los formularios.
+- Archivo de vídeo propio para una portada con vídeo nativo.
 
-🔗 **Producción:** https://vpm-montellano.vercel.app
+Mientras se confirman, la interfaz identifica esos canales como pendientes y el
+vídeo verificado se enlaza desde la publicación oficial de Facebook.

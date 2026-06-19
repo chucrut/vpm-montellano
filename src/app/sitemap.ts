@@ -2,32 +2,20 @@ import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://vpm-montellano.vercel.app";
-  const lastModified = new Date();
-
-  return [
-    {
-      url: baseUrl,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 1.0,
-    },
-    {
-      url: `${baseUrl}/propuestas`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/actualidad`,
-      lastModified,
-      changeFrequency: "daily",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/equipo`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
+  const pages = [
+    "",
+    "/quienes-somos",
+    "/nuestra-propuesta",
+    "/nuestro-equipo",
+    "/que-esta-pasando",
+    "/te-escuchamos",
+    "/unete",
   ];
+
+  return pages.map((path, index) => ({
+    url: `${baseUrl}${path}`,
+    lastModified: new Date(),
+    changeFrequency: index === 4 ? "weekly" : "monthly",
+    priority: index === 0 ? 1 : .8,
+  }));
 }
