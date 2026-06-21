@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import MobileHorizontalScroller from "@/components/MobileHorizontalScroller";
 import PageHero from "@/components/PageHero";
 import SiteShell from "@/components/SiteShell";
 import { team } from "@/data/site";
@@ -14,14 +15,15 @@ export const metadata: Metadata = {
 export default function NuestroEquipoPage() {
   return (
     <SiteShell>
-      <PageHero
-        eyebrow="NUESTRO EQUIPO"
-        title="Personas al servicio del pueblo."
-        intro="Vecinos y profesionales que conocen Montellano porque forman parte de su día a día."
-        image="/assets/header_3.png"
-        imageAlt="Vista de la iglesia y el casco urbano de Montellano"
-        imagePosition="right center"
-      />
+      <MobileHorizontalScroller label="Nuestro equipo">
+        <PageHero
+          eyebrow="NUESTRO EQUIPO"
+          title="Personas al servicio del pueblo."
+          intro="Vecinos y profesionales que conocen Montellano porque forman parte de su día a día."
+          image="/assets/header_3.png"
+          imageAlt="Vista de la iglesia y el casco urbano de Montellano"
+          imagePosition="right center"
+        />
 
       <section id="contenido" className="team-intro">
         <h2 className="reveal">Un equipo cercano,<br />con responsabilidades reales.</h2>
@@ -52,13 +54,14 @@ export default function NuestroEquipoPage() {
         ))}
       </section>
 
-      <section className="statement-band">
-        <p className="reveal">“Representar también significa explicar, escuchar y volver a dar la cara.”</p>
-        <div className="inline-links reveal">
-          <Link className="text-link" href="/quienes-somos">Quiénes somos <span>↗</span></Link>
-          <Link className="text-link" href="/unete">Súmate <span>↗</span></Link>
-        </div>
-      </section>
+        <section className="statement-band">
+          <p className="reveal">“Representar también significa explicar, escuchar y volver a dar la cara.”</p>
+          <div className="inline-links reveal">
+            <Link className="text-link" href="/quienes-somos">Quiénes somos <span>↗</span></Link>
+            <Link className="text-link" href="/unete">Súmate <span>↗</span></Link>
+          </div>
+        </section>
+      </MobileHorizontalScroller>
     </SiteShell>
   );
 }

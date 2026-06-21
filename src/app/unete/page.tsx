@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import JoinForm from "@/components/JoinForm";
+import MobileHorizontalScroller from "@/components/MobileHorizontalScroller";
 import PageHero from "@/components/PageHero";
 import SiteShell from "@/components/SiteShell";
 
@@ -23,14 +24,15 @@ const pathways = [
 export default function UnetePage() {
   return (
     <SiteShell>
-      <PageHero
-        eyebrow="ÚNETE"
-        title="Hay muchas formas de estar cerca."
-        intro="Participa con tu tiempo, tus ideas o tu experiencia."
-        image="/assets/header.png"
-        imageAlt="Paisaje y casco urbano de Montellano"
-        imagePosition="right center"
-      />
+      <MobileHorizontalScroller label="Únete">
+        <PageHero
+          eyebrow="ÚNETE"
+          title="Hay muchas formas de estar cerca."
+          intro="Participa con tu tiempo, tus ideas o tu experiencia."
+          image="/assets/header.png"
+          imageAlt="Paisaje y casco urbano de Montellano"
+          imagePosition="right center"
+        />
 
       <section id="contenido" className="participation-intro">
         <p className="eyebrow reveal">PARTICIPAR IMPORTA</p>
@@ -59,15 +61,16 @@ export default function UnetePage() {
         <div className="reveal"><JoinForm /></div>
       </section>
 
-      <section className="closing-visual compact">
-        <Image src="/assets/header.png" alt="Paisaje de Montellano" fill sizes="100vw" />
-        <div className="closing-visual-overlay" />
-        <div className="reveal">
-          <p className="eyebrow">UN PROYECTO DE PERSONAS</p>
-          <h2>Conoce a quienes ya están trabajando.</h2>
-          <Link className="text-link light" href="/nuestro-equipo">Nuestro equipo <span>↗</span></Link>
-        </div>
-      </section>
+        <section className="closing-visual compact">
+          <Image src="/assets/header.png" alt="Paisaje de Montellano" fill sizes="100vw" />
+          <div className="closing-visual-overlay" />
+          <div className="reveal">
+            <p className="eyebrow">UN PROYECTO DE PERSONAS</p>
+            <h2>Conoce a quienes ya están trabajando.</h2>
+            <Link className="text-link light" href="/nuestro-equipo">Nuestro equipo <span>↗</span></Link>
+          </div>
+        </section>
+      </MobileHorizontalScroller>
     </SiteShell>
   );
 }

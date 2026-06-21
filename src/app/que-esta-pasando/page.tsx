@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import MobileHorizontalScroller from "@/components/MobileHorizontalScroller";
 import PageHero from "@/components/PageHero";
 import SiteShell from "@/components/SiteShell";
 import SocialIcons from "@/components/SocialIcons";
@@ -16,14 +17,15 @@ export default function QueEstaPasandoPage() {
 
   return (
     <SiteShell>
-      <PageHero
-        eyebrow="QUÉ ESTÁ PASANDO"
-        title="El pueblo, en movimiento."
-        intro="Actualidad, asuntos públicos y conversaciones que importan en Montellano."
-        image="/assets/header_2.png"
-        imageAlt="Vista panorámica ilustrada de Montellano"
-        imagePosition="right center"
-      />
+      <MobileHorizontalScroller label="Qué está pasando">
+        <PageHero
+          eyebrow="QUÉ ESTÁ PASANDO"
+          title="El pueblo, en movimiento."
+          intro="Actualidad, asuntos públicos y conversaciones que importan en Montellano."
+          image="/assets/header_2.png"
+          imageAlt="Vista panorámica ilustrada de Montellano"
+          imagePosition="right center"
+        />
 
       <section id="contenido" className="featured-update">
         <div className={`featured-update-image is-${featured.imageFit} reveal`}>
@@ -46,6 +48,7 @@ export default function QueEstaPasandoPage() {
         <div className="newsroom-heading reveal">
           <p className="eyebrow">ACTUALIDAD VPM</p>
           <h2>Una selección para entender el presente.</h2>
+          <span className="horizontal-strip-hint">Explora las publicaciones →</span>
         </div>
         <div className="news-grid">
           {items.map((item) => (
@@ -85,11 +88,12 @@ export default function QueEstaPasandoPage() {
         </a>
       </section>
 
-      <section className="social-follow" id="canales">
-        <p className="eyebrow reveal">SIGUE LA CONVERSACIÓN</p>
-        <h2 className="reveal">La actualidad continúa en nuestros canales.</h2>
-        <SocialIcons />
-      </section>
+        <section className="social-follow" id="canales">
+          <p className="eyebrow reveal">SIGUE LA CONVERSACIÓN</p>
+          <h2 className="reveal">La actualidad continúa en nuestros canales.</h2>
+          <SocialIcons />
+        </section>
+      </MobileHorizontalScroller>
     </SiteShell>
   );
 }

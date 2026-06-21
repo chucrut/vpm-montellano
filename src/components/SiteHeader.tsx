@@ -15,10 +15,26 @@ export default function SiteHeader() {
   const overlay = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const update = () => setScrolled(window.scrollY > 24);
+    const media = window.matchMedia("(max-width: 767px)");
+    let horizontalActive = 0;
+    const update = () =>
+      setScrolled(media.matches ? horizontalActive > 0 : window.scrollY > 24);
+    const updateHorizontal = (event: Event) => {
+      const detail = (event as CustomEvent<{ active: number }>).detail;
+      horizontalActive = detail.active;
+      if (media.matches) {
+        setScrolled(detail.active > 0);
+      }
+    };
     update();
     window.addEventListener("scroll", update, { passive: true });
-    return () => window.removeEventListener("scroll", update);
+    window.addEventListener("vpm:horizontal-panel", updateHorizontal);
+    media.addEventListener("change", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("vpm:horizontal-panel", updateHorizontal);
+      media.removeEventListener("change", update);
+    };
   }, []);
 
   useEffect(() => {
@@ -28,6 +44,7 @@ export default function SiteHeader() {
     const htmlOverflow = document.documentElement.style.overflow;
     document.body.style.overflow = "hidden";
     document.documentElement.style.overflow = "hidden";
+    document.documentElement.classList.add("menu-open");
 
     const focusTimer = window.setTimeout(() => {
       overlay.current?.querySelector<HTMLAnchorElement>("a")?.focus();
@@ -37,6 +54,7 @@ export default function SiteHeader() {
       window.clearTimeout(focusTimer);
       document.body.style.overflow = bodyOverflow;
       document.documentElement.style.overflow = htmlOverflow;
+      document.documentElement.classList.remove("menu-open");
     };
   }, [open]);
 

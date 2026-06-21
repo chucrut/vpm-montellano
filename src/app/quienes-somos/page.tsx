@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import MobileHorizontalScroller from "@/components/MobileHorizontalScroller";
 import PageHero from "@/components/PageHero";
 import SiteShell from "@/components/SiteShell";
 
@@ -20,14 +21,15 @@ const values = [
 export default function QuienesSomosPage() {
   return (
     <SiteShell>
-      <PageHero
-        eyebrow="QUIÉNES SOMOS"
-        title="Un proyecto nacido cerca."
-        intro="Vecinos que comparten pueblo, preocupaciones y voluntad de trabajar."
-        image="/assets/header_2.png"
-        imageAlt="Vista panorámica ilustrada de Montellano"
-        imagePosition="right center"
-      />
+      <MobileHorizontalScroller label="Quiénes somos">
+        <PageHero
+          eyebrow="QUIÉNES SOMOS"
+          title="Un proyecto nacido cerca."
+          intro="Vecinos que comparten pueblo, preocupaciones y voluntad de trabajar."
+          image="/assets/header_2.png"
+          imageAlt="Vista panorámica ilustrada de Montellano"
+          imagePosition="right center"
+        />
 
       <section id="contenido" className="editorial-story">
         <div className="story-title reveal">
@@ -78,9 +80,10 @@ export default function QuienesSomosPage() {
         </div>
       </section>
 
-      <section className="statement-band">
-        <p className="reveal">“Lo público funciona mejor cuando permanece cerca de la gente.”</p>
-      </section>
+        <section className="statement-band">
+          <p className="reveal">“Lo público funciona mejor cuando permanece cerca de la gente.”</p>
+        </section>
+      </MobileHorizontalScroller>
     </SiteShell>
   );
 }

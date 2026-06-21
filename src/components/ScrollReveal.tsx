@@ -17,7 +17,13 @@ export default function ScrollReveal() {
     }
 
     elements.forEach((element) => {
-      if (element.getBoundingClientRect().top < window.innerHeight * 0.92) {
+      const rect = element.getBoundingClientRect();
+      if (
+        rect.top < window.innerHeight * 0.92 &&
+        rect.bottom > 0 &&
+        rect.left < window.innerWidth * 0.92 &&
+        rect.right > 0
+      ) {
         element.classList.add("visible");
       }
     });
