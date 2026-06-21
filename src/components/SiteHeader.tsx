@@ -126,8 +126,15 @@ export default function SiteHeader() {
             src="/assets/header_3.png"
             alt=""
             fill
-            sizes="(max-width: 900px) 100vw, 50vw"
-            className="overlay-media-image"
+            sizes="(max-width: 900px) 1px, 50vw"
+            className="overlay-media-image overlay-media-image-desktop"
+          />
+          <Image
+            src="/assets/menu-montellano.jpg"
+            alt=""
+            fill
+            sizes="(max-width: 900px) 100vw, 1px"
+            className="overlay-media-image overlay-media-image-mobile"
           />
           <div className="overlay-media-shade" />
           <p>Montellano · Sevilla</p>

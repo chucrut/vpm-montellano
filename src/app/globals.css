@@ -208,6 +208,7 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.8rem); line-height: 1.08; font-weight: 65
   transform: scale(1.025);
   transition: transform .9s cubic-bezier(.16, 1, .3, 1);
 }
+.overlay-media-image-mobile { display: none; }
 .is-open .overlay-media-image { transform: scale(1); }
 .overlay-media-shade {
   position: absolute;
@@ -793,7 +794,11 @@ h3 { font-size: clamp(1.2rem, 1.8vw, 1.8rem); line-height: 1.08; font-weight: 65
     grid-template-columns: 1fr;
   }
   .overlay-media { grid-row: 1; }
-  .overlay-media-image { object-position: center 48%; }
+  .overlay-media-image-desktop { display: none; }
+  .overlay-media-image-mobile {
+    display: block;
+    object-position: center;
+  }
   .overlay-media > p { display: none; }
   .overlay-menu-panel {
     grid-row: 2;
