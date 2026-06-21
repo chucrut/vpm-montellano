@@ -86,8 +86,8 @@ export default function QueEstaPasandoPage() {
       </section>
 
       <section className="social-follow" id="canales">
-        <p className="eyebrow">SIGUE LA CONVERSACIÓN</p>
-        <h2>La actualidad continúa en nuestros canales.</h2>
+        <p className="eyebrow reveal">SIGUE LA CONVERSACIÓN</p>
+        <h2 className="reveal">La actualidad continúa en nuestros canales.</h2>
         <SocialIcons />
       </section>
     </SiteShell>

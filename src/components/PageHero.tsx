@@ -41,7 +41,7 @@ export default function PageHero({
         />
       </div>
       <div className="page-hero-shade" />
-      <div className="page-hero-content reveal">
+      <div className="page-hero-content">
         <p className="eyebrow">{eyebrow}</p>
         <h1>{title}</h1>
         <p>{intro}</p>

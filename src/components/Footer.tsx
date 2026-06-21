@@ -7,9 +7,9 @@ export default function Footer() {
   return (
     <footer className="site-footer">
       <div className="footer-statement">
-        <p className="eyebrow">VECINOS POR MONTELLANO</p>
-        <h2>El futuro del pueblo se construye cerca.</h2>
-        <Link className="text-link light" href="/unete">Forma parte del proyecto <span>↗</span></Link>
+        <p className="eyebrow reveal">VECINOS POR MONTELLANO</p>
+        <h2 className="reveal">El futuro del pueblo se construye cerca.</h2>
+        <Link className="text-link light reveal" href="/unete">Forma parte del proyecto <span>↗</span></Link>
       </div>
 
       <div className="footer-grid">
