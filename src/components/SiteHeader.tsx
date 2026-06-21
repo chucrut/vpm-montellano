@@ -22,18 +22,21 @@ export default function SiteHeader() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    if (open) {
-      const focusTimer = window.setTimeout(() => {
-        overlay.current?.querySelector<HTMLAnchorElement>("a")?.focus();
-      }, 80);
-      return () => {
-        window.clearTimeout(focusTimer);
-        document.body.style.overflow = "";
-      };
-    }
+    if (!open) return;
+
+    const bodyOverflow = document.body.style.overflow;
+    const htmlOverflow = document.documentElement.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+
+    const focusTimer = window.setTimeout(() => {
+      overlay.current?.querySelector<HTMLAnchorElement>("a")?.focus();
+    }, 80);
+
     return () => {
-      document.body.style.overflow = "";
+      window.clearTimeout(focusTimer);
+      document.body.style.overflow = bodyOverflow;
+      document.documentElement.style.overflow = htmlOverflow;
     };
   }, [open]);
 
@@ -43,13 +46,19 @@ export default function SiteHeader() {
         setOpen(false);
         trigger.current?.focus();
       }
+
       if (event.key === "Tab" && open && overlay.current) {
-        const focusable = Array.from(
+        const overlayFocusable = Array.from(
           overlay.current.querySelectorAll<HTMLElement>('a[href], button:not([disabled])'),
         );
+        const focusable = trigger.current
+          ? [trigger.current, ...overlayFocusable]
+          : overlayFocusable;
+
         if (!focusable.length) return;
         const first = focusable[0];
         const last = focusable[focusable.length - 1];
+
         if (event.shiftKey && document.activeElement === first) {
           event.preventDefault();
           last.focus();
@@ -59,6 +68,7 @@ export default function SiteHeader() {
         }
       }
     };
+
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
@@ -66,12 +76,22 @@ export default function SiteHeader() {
   return (
     <>
       <header className={`site-header ${scrolled ? "is-scrolled" : ""} ${open ? "menu-is-open" : ""}`}>
-        <SocialIcons className="header-socials" />
+        <SocialIcons className="header-socials" tabIndex={open ? -1 : undefined} />
 
-        <Link className="header-brand" href="/" aria-label="Vecinos por Montellano — inicio" onClick={() => setOpen(false)}>
-          <Image src="/assets/logo-mark-transparent.png" alt="" width={28} height={26} priority />
-          <span>VECINOS</span>
-          <small>POR MONTELLANO</small>
+        <Link
+          className="header-brand"
+          href="/"
+          aria-label="Vecinos por Montellano — inicio"
+          onClick={() => setOpen(false)}
+          tabIndex={open ? -1 : undefined}
+        >
+          <Image
+            src="/assets/logo-transparent.png"
+            alt="Vecinos por Montellano"
+            width={1254}
+            height={1254}
+            priority
+          />
         </Link>
 
         <button
@@ -80,7 +100,7 @@ export default function SiteHeader() {
           type="button"
           aria-expanded={open}
           aria-controls="overlay-navigation"
-          aria-label={open ? "Cerrar menú" : "Abrir menú"}
+          aria-label={open ? "Close menu" : "Open menu"}
           onClick={() => setOpen((value) => !value)}
         >
           <span className="menu-trigger-label">{open ? "CERRAR" : "MENÚ"}</span>
@@ -101,30 +121,44 @@ export default function SiteHeader() {
         aria-label="Navegación principal"
         aria-hidden={!open}
       >
-        <nav>
-          <ol>
-            {routes.map((route) => (
-              <li key={route.href}>
-                <Link
-                  href={route.href}
-                  onClick={() => setOpen(false)}
-                  tabIndex={open ? 0 : -1}
-                  aria-current={pathname === route.href ? "page" : undefined}
-                >
-                  {route.label}
-                </Link>
-              </li>
-            ))}
-          </ol>
-        </nav>
+        <div className="overlay-media" aria-hidden="true">
+          <Image
+            src="/assets/header_3.png"
+            alt=""
+            fill
+            sizes="(max-width: 900px) 100vw, 50vw"
+            className="overlay-media-image"
+          />
+          <div className="overlay-media-shade" />
+          <p>Montellano · Sevilla</p>
+        </div>
 
-        <div className="overlay-meta">
-          <SocialIcons />
-          <div>
-            <Link href="/aviso-legal" tabIndex={open ? 0 : -1}>Aviso legal</Link>
-            <Link href="/privacidad" tabIndex={open ? 0 : -1}>Privacidad</Link>
+        <div className="overlay-menu-panel">
+          <nav>
+            <ol>
+              {routes.map((route) => (
+                <li key={route.href}>
+                  <Link
+                    href={route.href}
+                    onClick={() => setOpen(false)}
+                    tabIndex={open ? 0 : -1}
+                    aria-current={pathname === route.href ? "page" : undefined}
+                  >
+                    {route.label}
+                  </Link>
+                </li>
+              ))}
+            </ol>
+          </nav>
+
+          <div className="overlay-meta">
+            <SocialIcons tabIndex={open ? 0 : -1} />
+            <div className="overlay-legal">
+              <Link href="/aviso-legal" onClick={() => setOpen(false)} tabIndex={open ? 0 : -1}>Aviso legal</Link>
+              <Link href="/privacidad" onClick={() => setOpen(false)} tabIndex={open ? 0 : -1}>Privacidad</Link>
+            </div>
+            <p>Contacto a través de nuestros canales oficiales<br />Montellano · Sevilla</p>
           </div>
-          <p>Contacto a través de nuestros canales oficiales<br />Montellano · Sevilla</p>
         </div>
       </div>
     </>

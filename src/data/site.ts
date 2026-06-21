@@ -29,18 +29,18 @@ export const socialLinks: readonly SocialLink[] = [
     kind: "instagram",
   },
   {
-    label: "YouTube",
-    href: "/que-esta-pasando#canales",
-    kind: "youtube",
-    placeholder: true,
-  },
-  {
     label: "TikTok",
     href: "https://www.tiktok.com/@vecinos.por.monte",
     kind: "tiktok",
   },
   {
+    label: "YouTube",
+    href: "https://www.youtube.com/@VecinosporMontellano",
+    kind: "youtube",
+  },
+  {
     label: "WhatsApp",
+    // Placeholder fallback until VPM confirms an official WhatsApp number.
     href: "/te-escuchamos#contenido",
     kind: "whatsapp",
     placeholder: true,
